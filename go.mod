@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/gofiber/fiber/v2 v2.42.0
-	github.com/romankravchuk/logger v0.0.0-20230223114651-9a79e570f200
+	github.com/romankravchuk/torolog v1.0.0
 )
 
 require github.com/rs/zerolog v1.29.0 // indirect

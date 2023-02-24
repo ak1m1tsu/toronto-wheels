@@ -28,8 +28,8 @@ github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZb
 github.com/rivo/uniseg v0.2.0/go.mod h1:J6wj4VEh+S6ZtnVlnTBMWIodfgj8LQOQFoIToxlJtxc=
 github.com/rivo/uniseg v0.4.4 h1:8TfxU8dW6PdqD27gjM8MVNuicgxIjxpm4K7x4jp8sis=
 github.com/rivo/uniseg v0.4.4/go.mod h1:FN3SvrM+Zdj16jyLfmOkMNblXMcoc8DfTHruCPUcx88=
-github.com/romankravchuk/logger v0.0.0-20230223114651-9a79e570f200 h1:1C0gkWvUxk199q5SWRAXlsByKhNLYZ0oDiZecLWIww4=
-github.com/romankravchuk/logger v0.0.0-20230223114651-9a79e570f200/go.mod h1:xDFBFngpjmEmbTSyo/R0jMvAgwGZkYm9mmBE+Pb4xnM=
+github.com/romankravchuk/torolog v1.0.0 h1:ih/apZIvAe6MkvFmVV0eWQ1KnmxhixU02hqW+iztXYM=
+github.com/romankravchuk/torolog v1.0.0/go.mod h1:Q9tp/4/LO3iwCSggwC5R7t/uCieHa+FerKE8WyE8bQ8=
 github.com/rs/xid v1.4.0/go.mod h1:trrq9SKmegXys3aeAKXMUTdJsYXVwGY3RLcfgqegfbg=
 github.com/rs/zerolog v1.29.0 h1:Zes4hju04hjbvkVkOhdl2HpZa+0PmVwigmo8XoORE5w=
 github.com/rs/zerolog v1.29.0/go.mod h1:NILgTygv/Uej1ra5XxGf82ZFSLk58MFGAUS2o6usyD0=

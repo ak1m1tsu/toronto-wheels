@@ -5,19 +5,19 @@ import (
 	"time"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/romankravchuk/logger"
+	"github.com/romankravchuk/torolog"
 )
 
 type Config struct {
 	Next func(ctx *fiber.Ctx) bool
 
-	Logger *logger.Logger
+	Logger *torolog.Logger
 }
 
 func New(cfg Config) fiber.Handler {
-	var sublogger *logger.Logger
+	var sublogger *torolog.Logger
 	if cfg.Logger == nil {
-		sublogger = logger.New(os.Stdout)
+		sublogger = torolog.New(os.Stdout)
 	} else {
 		sublogger = cfg.Logger
 	}
@@ -28,15 +28,17 @@ func New(cfg Config) fiber.Handler {
 		}
 		err := ctx.Next()
 		if err != nil {
-			sublogger.Error("[TORONTO WHEELS]", err, logger.Fields{
+			sublogger.Error("[TORONTO WHEELS]", err, torolog.Fields{
 				{Key: "Path", Value: ctx.Path()},
 				{Key: "Mathod", Value: ctx.Method()},
+				{Key: "Params", Value: ctx.AllParams()},
 				{Key: "Duration", Value: time.Since(start)},
 			})
 		} else {
-			sublogger.Info("[TORONTO WHEELS]", logger.Fields{
+			sublogger.Info("[TORONTO WHEELS]", torolog.Fields{
 				{Key: "Path", Value: ctx.Path()},
 				{Key: "Method", Value: ctx.Method()},
+				{Key: "Params", Value: ctx.AllParams()},
 				{Key: "Duration", Value: time.Since(start)},
 			})
 		}

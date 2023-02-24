@@ -2,18 +2,19 @@ package router
 
 import (
 	"github.com/gofiber/fiber/v2"
+	"github.com/romankravchuk/torolog"
 	"github.com/romankravchuk/toronto-wheels/internal/server/router/handlers/customers"
 )
 
-func NewV1() *fiber.App {
+func NewV1(log *torolog.Logger) *fiber.App {
 	r := fiber.New()
-	r.Mount("/customers", newCustomersRouter())
+	r.Mount("/customers", newCustomersRouter(log))
 	return r
 }
 
-func newCustomersRouter() *fiber.App {
+func newCustomersRouter(log *torolog.Logger) *fiber.App {
 	r := fiber.New()
-	h := customers.New()
+	h := customers.New(log)
 	r.Get("/", h.GetCustomers)
 	r.Post("/", h.AddCustomer)
 	r.Route("/:id", func(router fiber.Router) {
