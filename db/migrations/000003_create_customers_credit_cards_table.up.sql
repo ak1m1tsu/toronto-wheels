@@ -1,5 +1,5 @@
 CREATE TABLE
-    IF NOT EXISTS customer_credit_cards (
+    IF NOT EXISTS customers_credit_cards (
         customer_id uuid NOT NULL,
         card_id uuid NOT NULL,
         CONSTRAINT pk_customer_credit_cards PRIMARY KEY (customer_id, card_id),
@@ -7,10 +7,12 @@ CREATE TABLE
         CONSTRAINT unq_customer_credit_cards_card_id UNIQUE (card_id)
     );
 
-ALTER TABLE credit_cards
+ALTER TABLE
+    customers_credit_cards
 ADD
-    CONSTRAINT fk_credit_cards FOREIGN KEY (id) REFERENCES customer_credit_cards(card_id);
+    CONSTRAINT fk_customer_credit_cards_card FOREIGN KEY (card_id) REFERENCES credit_cards(id);
 
-ALTER TABLE customers
+ALTER TABLE
+    customers_credit_cards
 ADD
-    CONSTRAINT fk_customers FOREIGN KEY (id) REFERENCES customer_credit_cards(customer_id);
+    CONSTRAINT fk_customer_credit_cards_customer FOREIGN KEY (customer_id) REFERENCES customers(id);

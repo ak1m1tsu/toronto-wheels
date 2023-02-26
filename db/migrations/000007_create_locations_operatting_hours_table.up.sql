@@ -8,6 +8,7 @@ CREATE TABLE
         CONSTRAINT unq_locations_operatting_hours_location_id UNIQUE (location_id)
     );
 
-ALTER TABLE locations
+ALTER TABLE
+    locations_operatting_hours
 ADD
-    CONSTRAINT fk_locations FOREIGN KEY (id) REFERENCES locations_operatting_hours(location_id);
+    CONSTRAINT fk_locations_operatting_hours FOREIGN KEY (location_id) REFERENCES locations(id);

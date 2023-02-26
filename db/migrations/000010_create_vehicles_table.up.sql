@@ -21,4 +21,16 @@ CREATE INDEX idx_vehicles_type ON vehicles ( "type" );
 CREATE INDEX
     idx_vehicles_transmission_type ON vehicles (transmission_type);
 
-CREATE INDEX idx_vehicles_fuel_type ON vehicles ( fuel_type );
+CREATE INDEX idx_vehicles_fuel_type ON vehicles (fuel_type);
+
+ALTER TABLE vehicles
+ADD
+    CONSTRAINT fk_vehicles_vehicle_makes FOREIGN KEY (make_id) REFERENCES vehicle_makes(id);
+
+ALTER TABLE vehicles
+ADD
+    CONSTRAINT fk_vehicles_vehicle_models FOREIGN KEY (model_id) REFERENCES vehicle_models(id);
+
+ALTER TABLE vehicles
+ADD
+    CONSTRAINT fk_vehicles_locations FOREIGN KEY (location_id) REFERENCES locations(id);

@@ -1,1 +1,0 @@
-DROP TABLE IF EXISTS locations_operatting_hours;

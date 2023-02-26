@@ -9,4 +9,4 @@ CREATE TABLE
 
 ALTER TABLE vehicle_models
 ADD
-    CONSTRAINT fk_vehicle_models_vehicles FOREIGN KEY (id) REFERENCES vehicles(model_id);
+    CONSTRAINT fk_vehicle_models FOREIGN KEY (make_id) REFERENCES vehicle_makes(id);

@@ -8,6 +8,6 @@ CREATE TABLE
         CONSTRAINT unq_vehicles_images_vehicle_id UNIQUE (vehicle_id)
     );
 
-ALTER TABLE vehicles
+ALTER TABLE vehicles_images
 ADD
-    CONSTRAINT fk_vehicles_vehicles_images FOREIGN KEY (id) REFERENCES vehicles_images(vehicle_id);
+    CONSTRAINT fk_vehicles_images_vehicles FOREIGN KEY (vehicle_id) REFERENCES vehicles(id);

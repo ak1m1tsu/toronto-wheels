@@ -12,6 +12,10 @@ CREATE TABLE
         CONSTRAINT unq_payments_customer_id UNIQUE (customer_id)
     );
 
-ALTER TABLE reservations
+ALTER TABLE payments
 ADD
-    CONSTRAINT fk_reservations_payments FOREIGN KEY (id) REFERENCES payments(reservation_id);
+    CONSTRAINT fk_payments_customers FOREIGN KEY (customer_id) REFERENCES customers(id);
+
+ALTER TABLE payments
+ADD
+    CONSTRAINT fk_payments_reservation FOREIGN KEY (reservation_id) REFERENCES reservations(id);

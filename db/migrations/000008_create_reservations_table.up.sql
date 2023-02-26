@@ -16,6 +16,14 @@ CREATE TABLE
         CONSTRAINT unq_reservations_dropoff_location_id UNIQUE (dropoff_location_id)
     );
 
-ALTER TABLE vehicles
+ALTER TABLE reservations
 ADD
-    CONSTRAINT fk_vehicles_reservations FOREIGN KEY (id) REFERENCES reservations(vehicle_id);
+    CONSTRAINT fk_reservations_customers FOREIGN KEY (customer_id) REFERENCES customers(id);
+
+ALTER TABLE reservations
+ADD
+    CONSTRAINT fk_reservations_locations_pickup FOREIGN KEY (pickup_location_id) REFERENCES locations(id);
+
+ALTER TABLE reservations
+ADD
+    CONSTRAINT fk_reservations_dropoff FOREIGN KEY (dropoff_location_id) REFERENCES locations(id);
