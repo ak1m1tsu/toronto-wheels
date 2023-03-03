@@ -17,7 +17,7 @@ func TestGetCustomerByID(t *testing.T) {
 			id   = "a787151f-0116-4a79-8e1a-6f9c4b46af31"
 			repo = New(db)
 		)
-		_, err := repo.GetByID(id)
+		_, err := repo.FindById(id)
 		assert.Nil(t, err)
 	})
 	t.Run("invalid-uuid", func(t *testing.T) {
@@ -25,7 +25,7 @@ func TestGetCustomerByID(t *testing.T) {
 			id   = "invalid-uuid"
 			repo = New(db)
 		)
-		_, err := repo.GetByID(id)
+		_, err := repo.FindById(id)
 		assert.NotNil(t, err)
 	})
 }

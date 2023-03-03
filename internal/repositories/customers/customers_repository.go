@@ -2,26 +2,16 @@ package customers
 
 import (
 	"github.com/jmoiron/sqlx"
+	"github.com/romankravchuk/toronto-wheels/internal/repositories/models"
 )
 
-type Customer struct {
-	ID            string `db:"id"`
-	FirstName     string `db:"first_name"`
-	LastName      string `db:"last_name"`
-	Email         string `db:"email"`
-	Phone         string `db:"phone"`
-	Passhash      string `db:"passhash"`
-	LicenseNumber string `db:"license_number"`
-	Address       string `db:"address"`
-}
-
 type CustomerStorer interface {
-	GetAll() ([]Customer, error)
-	GetByID(string) (Customer, error)
-	GetByEmail(string) (Customer, error)
-	GetByPhone(string) (Customer, error)
-	Insert(Customer) error
-	Update(string, Customer) error
+	FindAll() ([]models.Customer, error)
+	FindById(string) (models.Customer, error)
+	FindByEmail(string) (models.Customer, error)
+	FindByPhone(string) (models.Customer, error)
+	Insert(models.Customer) error
+	Update(string, models.Customer) error
 	Delete(string) error
 }
 
@@ -33,32 +23,42 @@ func New(db *sqlx.DB) *CustomerStore {
 	return &CustomerStore{DB: db}
 }
 
-func (s *CustomerStore) GetAll() ([]Customer, error) {
-	return []Customer{}, nil
+func (s *CustomerStore) FindAll(pg models.Pagination) ([]models.Customer, error) {
+	var (
+		customers []models.Customer
+		query     = `
+			SELECT * FROM customers
+			ORDER BY $1
+			OFFSET $2
+			LIMIT $3
+		`
+		err = s.Select(&customers, query, pg.GetSort(), pg.GetOffSet(), pg.GetLimit())
+	)
+	return customers, err
 }
 
-func (s *CustomerStore) GetByID(id string) (Customer, error) {
+func (s *CustomerStore) FindById(id string) (models.Customer, error) {
 	var (
-		customer = Customer{}
+		customer = models.Customer{}
 		query    = "SELECT * FROM customers WHERE id=$1"
 		err      = s.Get(&customer, query, id)
 	)
 	return customer, err
 }
 
-func (s *CustomerStore) GetByEmail(email string) (Customer, error) {
-	return Customer{}, nil
+func (s *CustomerStore) FindByEmail(email string) (models.Customer, error) {
+	return models.Customer{}, nil
 }
 
-func (s *CustomerStore) GetByPhone(phone string) (Customer, error) {
-	return Customer{}, nil
+func (s *CustomerStore) FindByPhone(phone string) (models.Customer, error) {
+	return models.Customer{}, nil
 }
 
-func (s *CustomerStore) Insert(c Customer) error {
+func (s *CustomerStore) Insert(c models.Customer) error {
 	return nil
 }
 
-func (s *CustomerStore) Update(id string, c Customer) error {
+func (s *CustomerStore) Update(id string, c models.Customer) error {
 	return nil
 }
 
